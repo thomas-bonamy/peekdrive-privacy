@@ -1,5 +1,7 @@
-Politique de confidentialité - PeekDrive
+**Politique de confidentialité - PeekDrive**
+
 Dernière mise à jour : 27 mars 2026
+
 **Ce que fait PeekDrive**
 PeekDrive est une extension Chrome qui vous permet de rechercher dans le contenu de vos fichiers Google Drive et de visualiser les passages correspondants directement depuis les résultats.
 Collecte de données
@@ -20,4 +22,4 @@ PeekDrive demande l'accès à votre Google Drive uniquement pour lire le contenu
 Modifications
 En cas de modification de cette politique, la version mise à jour sera publiée à cette même URL avec une nouvelle date.
 Contact
-Questions ou remarques : mailto:peekdrive.contact@gmail.com
+Questions ou remarques : peekdrive.contact@gmail.com

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeekDrive, search inside your Google Drive files</title>
+    <meta name="description" content="PeekDrive searches inside your Google Drive files and takes you directly to the matching passage. Free Chrome extension.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2D7FF9;
+            --blue-light: #EBF3FE;
+            --blue-dark: #1A5FD1;
+            --text: #1a1a2e;
+            --text-muted: #5a5a7a;
+            --bg: #ffffff;
+            --section-bg: #f8f9fc;
+            --border: #e2e5ee;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .logo img { width: 32px; height: 32px; border-radius: 6px; }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--blue); }
+        .hero {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--blue); }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 36px;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+        .cta-btn svg { width: 20px; height: 20px; }
+        .features { background: var(--section-bg); padding: 80px 24px; }
+        .features-inner { max-width: 960px; margin: 0 auto; }
+        .features-inner h2 { text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 48px; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 24px;
+        }
+        .feature-icon {
+            width: 44px; height: 44px;
+            background: var(--blue-light);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .feature-icon svg { width: 22px; height: 22px; color: var(--blue); }
+        .feature-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; }
+        .filetypes { max-width: 960px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+        .filetypes h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
+        .filetypes > p { color: var(--text-muted); margin-bottom: 36px; }
+        .types-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+        .type-badge {
+            background: var(--blue-light);
+            color: var(--blue-dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        footer {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+        footer a { color: var(--blue); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 16px; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">
+            <img src="logo.png" alt="PeekDrive logo">
+            PeekDrive
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#filetypes">File types</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Search inside your Google Drive files.<br><span>Jump to the exact spot.</span></h1>
+        <p>Google Drive tells you which file matches. PeekDrive shows you where inside, and takes you there in one click. Free Chrome extension.</p>
+        <a href="https://chromewebstore.google.com/detail/peekdrive-recherche-pour/piecapgomaejneknjkfpdhcpegihmjpd" class="cta-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+            Add to Chrome, it's free
+        </a>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-inner">
+            <h2>How PeekDrive works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <h3>Search file content</h3>
+                    <p>Type a word or phrase. PeekDrive scans the actual text inside your Google Drive files, not just file names.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3>Preview the passage</h3>
+                    <p>See the matching text in context, right in the results, without opening the file.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </div>
+                    <h3>Jump to the right spot</h3>
+                    <p>Click "Open" and land on the exact paragraph, cell, or slide. No more Ctrl+F inside every file.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3>Mini-table for spreadsheets</h3>
+                    <p>For Sheets and Excel, PeekDrive shows a compact preview with the matching row and column.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                    </div>
+                    <h3>Filter and sort</h3>
+                    <p>Narrow results by file type (Docs, Sheets, Slides, PDF) and sort by date or relevance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>100% private</h3>
+                    <p>All processing happens locally in your browser. No data is sent to external servers. No analytics, no tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="filetypes" id="filetypes">
+        <h2>Supported file types</h2>
+        <p>PeekDrive works with the files you use every day.</p>
+        <div class="types-row">
+            <span class="type-badge">Google Docs</span>
+            <span class="type-badge">Google Sheets</span>
+            <span class="type-badge">Google Slides</span>
+            <span class="type-badge">PDF</span>
+            <span class="type-badge">Microsoft Word</span>
+            <span class="type-badge">Microsoft Excel</span>
+            <span class="type-badge">CSV</span>
+        </div>
+    </section>
+
+    <footer>
+        <span>&copy; 2026 PeekDrive</span>
+        <span><a href="privacy.html">Privacy Policy</a> · <a href="mailto:peekdrive.contact@gmail.com">peekdrive.contact@gmail.com</a></span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeekDrive</title>
+    <meta name="description" content="Search inside your Google Drive files and jump to the exact spot. Free Chrome extension.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2D7FF9;
+            --blue-light: #EBF3FE;
+            --blue-dark: #1A5FD1;
+            --text: #1a1a2e;
+            --text-muted: #5a5a7a;
+            --bg: #ffffff;
+            --section-bg: #f8f9fc;
+            --border: #e2e5ee;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: var(--blue);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 20px; height: 20px; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none;
+            font-size: 0.95rem; font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--blue); }
+        .lang-switch {
+            display: flex; background: var(--section-bg);
+            border-radius: 6px; overflow: hidden; border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 12px; font-size: 0.82rem; font-weight: 600;
+            border: none; background: transparent; color: var(--text-muted);
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
+        }
+        .lang-btn.active { background: var(--blue); color: #fff; }
+        .hero {
+            max-width: 960px; margin: 0 auto;
+            padding: 80px 24px 60px; text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.6rem; font-weight: 700;
+            line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--blue); }
+        .hero p {
+            font-size: 1.12rem; color: var(--text-muted);
+            max-width: 600px; margin: 0 auto 36px;
+        }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--blue); color: #fff;
+            padding: 14px 32px; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 1rem;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+        .cta-btn svg { width: 20px; height: 20px; }
+        .how { background: var(--section-bg); padding: 80px 24px; }
+        .how-inner { max-width: 960px; margin: 0 auto; }
+        .how-inner h2 { text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 48px; }
+        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .how-card {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 12px; padding: 28px 24px;
+        }
+        .how-num {
+            width: 36px; height: 36px;
+            background: var(--blue-light); color: var(--blue);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.95rem; margin-bottom: 14px;
+        }
+        .how-card h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
+        .how-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+        .features { max-width: 960px; margin: 0 auto; padding: 80px 24px; }
+        .features h2 { text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 48px; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card { background: var(--section-bg); border-radius: 12px; padding: 28px 24px; }
+        .feature-icon {
+            width: 44px; height: 44px; background: var(--blue-light);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .feature-icon svg { width: 22px; height: 22px; color: var(--blue); }
+        .feature-card h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+        .filetypes { background: var(--section-bg); padding: 80px 24px; text-align: center; }
+        .filetypes-inner { max-width: 960px; margin: 0 auto; }
+        .filetypes h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
+        .filetypes-inner > p { color: var(--text-muted); margin-bottom: 36px; }
+        .types-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+        .type-badge { padding: 10px 20px; border-radius: 50px; font-size: 0.88rem; font-weight: 600; }
+        .type-docs { background: #E6F4EA; color: #0B7A42; }
+        .type-sheets { background: #E6F4EA; color: #0B7A42; }
+        .type-slides { background: #FEF7E0; color: #8A6D00; }
+        .type-pdf { background: #FCE8E6; color: #B8352A; }
+        .type-word { background: #E8EDF5; color: #2B579A; }
+        .type-excel { background: #E2F0E8; color: #217346; }
+        .type-csv { background: #F1F3F4; color: #5F6368; }
+        footer {
+            max-width: 960px; margin: 0 auto; padding: 40px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.88rem; color: var(--text-muted);
+        }
+        footer a { color: var(--blue); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.9rem; }
+            .how-grid, .features-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><line x1="16" y1="16" x2="20" y2="20"/></svg>
+            </div>
+            PeekDrive
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+                <a href="#features" data-en="Features" data-fr="Fonctionnalités">Features</a>
+                <a href="#filetypes" data-en="File types" data-fr="Fichiers compatibles">File types</a>
+                <a href="privacy.html" data-en="Privacy" data-fr="Confidentialité">Privacy</a>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 data-en="Search inside your Google Drive files.<br><span>Jump to the exact spot.</span>" data-fr="Recherchez dans vos fichiers Google Drive.<br><span>Accédez au bon endroit.</span>">Search inside your Google Drive files.<br><span>Jump to the exact spot.</span></h1>
+        <p data-en="Google Drive tells you which file matches your search. PeekDrive shows you where inside the file, and takes you there in one click. Free, private, and open." data-fr="Google Drive vous dit quel fichier contient votre recherche. PeekDrive vous montre où dans le fichier, et vous y amène en un clic. Gratuit, privé et transparent.">Google Drive tells you which file matches your search. PeekDrive shows you where inside the file, and takes you there in one click. Free, private, and open.</p>
+        <a href="https://chromewebstore.google.com/detail/peekdrive-recherche-pour/piecapgomaejneknjkfpdhcpegihmjpd" class="cta-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+            <span data-en="Add to Chrome, it's free" data-fr="Ajouter à Chrome, c'est gratuit">Add to Chrome, it's free</span>
+        </a>
+    </section>
+
+    <section class="how" id="how">
+        <div class="how-inner">
+            <h2 data-en="How it works" data-fr="Comment ça marche">How it works</h2>
+            <div class="how-grid">
+                <div class="how-card">
+                    <div class="how-num">1</div>
+                    <h3 data-en="Search" data-fr="Recherchez">Search</h3>
+                    <p data-en="Type a word or phrase in the PeekDrive search bar. PeekDrive scans the actual content of your Google Drive files, not just file names." data-fr="Tapez un mot ou une expression dans la barre de recherche PeekDrive. PeekDrive analyse le contenu réel de vos fichiers Google Drive, pas seulement les noms de fichiers.">Type a word or phrase in the PeekDrive search bar. PeekDrive scans the actual content of your Google Drive files, not just file names.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-num">2</div>
+                    <h3 data-en="Preview" data-fr="Visualisez">Preview</h3>
+                    <p data-en="See the matching passage right in the results, with context around your search. For spreadsheets, a mini-table shows the matching row and column." data-fr="Visualisez le passage correspondant directement dans les résultats, avec le contexte autour de votre recherche. Pour les tableurs, un mini-tableau affiche la ligne et la colonne correspondantes.">See the matching passage right in the results, with context around your search. For spreadsheets, a mini-table shows the matching row and column.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-num">3</div>
+                    <h3 data-en="Open" data-fr="Ouvrez">Open</h3>
+                    <p data-en='Click "Open" and land directly on the right paragraph in a Doc, the right cell in a Sheet, or the right slide in a presentation.' data-fr='Cliquez sur « Ouvrir » et atterrissez directement au bon paragraphe dans un Doc, à la bonne cellule dans un Sheet, ou à la bonne diapositive dans une présentation.'>Click "Open" and land directly on the right paragraph in a Doc, the right cell in a Sheet, or the right slide in a presentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 data-en="Why PeekDrive" data-fr="Pourquoi PeekDrive">Why PeekDrive</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <h3 data-en="Passage preview" data-fr="Aperçu du passage">Passage preview</h3>
+                <p data-en="See the matching text in context without opening the file. You get the result and its surroundings instantly." data-fr="Voyez le texte correspondant en contexte sans ouvrir le fichier. Vous obtenez le résultat et son contexte instantanément.">See the matching text in context without opening the file. You get the result and its surroundings instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+                <h3 data-en="Direct access" data-fr="Accès direct">Direct access</h3>
+                <p data-en="One click takes you to the exact paragraph, cell, or slide. Your search term is automatically copied to your clipboard." data-fr="Un clic vous amène au bon paragraphe, à la bonne cellule ou à la bonne diapositive. Votre recherche est automatiquement copiée dans le presse-papier.">One click takes you to the exact paragraph, cell, or slide. Your search term is automatically copied to your clipboard.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+                <h3 data-en="Filters and sorting" data-fr="Filtres et tri">Filters and sorting</h3>
+                <p data-en="Narrow results by file type (Docs, Sheets, Slides, PDF) and sort by date or relevance." data-fr="Affinez par type de fichier (Docs, Sheets, Slides, PDF) et triez par date ou pertinence.">Narrow results by file type (Docs, Sheets, Slides, PDF) and sort by date or relevance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+                <h3 data-en="Browse all matches" data-fr="Toutes les correspondances">Browse all matches</h3>
+                <p data-en='Click "See other results" to navigate through every matching passage within a single file.' data-fr='Cliquez sur « Voir les autres résultats » pour parcourir toutes les correspondances dans un même fichier.'>Click "See other results" to navigate through every matching passage within a single file.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <h3 data-en="100% private" data-fr="100% privé">100% private</h3>
+                <p data-en="All processing happens locally in your browser. No data sent to external servers. No analytics, no tracking, no cookies." data-fr="Tout le traitement se fait localement dans votre navigateur. Aucune donnée envoyée à des serveurs externes. Pas d'analytics, pas de tracking, pas de cookies.">All processing happens locally in your browser. No data sent to external servers. No analytics, no tracking, no cookies.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                <h3 data-en="Free" data-fr="Gratuit">Free</h3>
+                <p data-en="PeekDrive is free. Install the extension and start searching." data-fr="PeekDrive est gratuit. Installez l'extension et commencez vos recherches.">PeekDrive is free. Install the extension and start searching.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="filetypes" id="filetypes">
+        <div class="filetypes-inner">
+            <h2 data-en="Supported file types" data-fr="Fichiers compatibles">Supported file types</h2>
+            <p data-en="PeekDrive works with the files you use every day." data-fr="PeekDrive fonctionne avec les fichiers que vous utilisez au quotidien.">PeekDrive works with the files you use every day.</p>
+            <div class="types-row">
+                <span class="type-badge type-docs">Google Docs</span>
+                <span class="type-badge type-sheets">Google Sheets</span>
+                <span class="type-badge type-slides">Google Slides</span>
+                <span class="type-badge type-pdf">PDF</span>
+                <span class="type-badge type-word">Microsoft Word</span>
+                <span class="type-badge type-excel">Microsoft Excel</span>
+                <span class="type-badge type-csv">CSV</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span>&copy; 2026 PeekDrive</span>
+        <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a> · <a href="mailto:peekdrive.contact@gmail.com">peekdrive.contact@gmail.com</a></span>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
+                var val = el.getAttribute('data-' + lang);
+                if (el.tagName === 'A' && el.getAttribute('href') && !val.includes('<')) {
+                    el.textContent = val;
+                } else {
+                    el.innerHTML = val;
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            document.documentElement.lang = lang;
+            try { localStorage.setItem('peekdrive-lang', lang); } catch(e) {}
+        }
+        (function() {
+            var saved = null;
+            try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
+            if (saved) { setLang(saved); }
+            else {
+                var bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+                setLang(bl.startsWith('fr') ? 'fr' : 'en');
+            }
+        })();
+    </script>
+</body>
+</html>

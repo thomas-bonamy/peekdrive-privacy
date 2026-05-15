@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy, PeekDrive</title>
+    <meta name="description" content="PeekDrive Privacy Policy. PeekDrive does not collect, store, or share any personal data.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2D7FF9;
+            --blue-light: #EBF3FE;
+            --blue-dark: #1A5FD1;
+            --text: #1a1a2e;
+            --text-muted: #5a5a7a;
+            --bg: #ffffff;
+            --section-bg: #f8f9fc;
+            --border: #e2e5ee;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 960px; margin: 0 auto; padding: 24px;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; font-size: 1.2rem;
+            color: var(--text); text-decoration: none;
+        }
+        .logo-icon {
+            width: 36px; height: 36px; background: var(--blue);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 20px; height: 20px; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none;
+            font-size: 0.95rem; font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--blue); }
+        .lang-switch {
+            display: flex; background: var(--section-bg);
+            border-radius: 6px; overflow: hidden; border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 12px; font-size: 0.82rem; font-weight: 600;
+            border: none; background: transparent; color: var(--text-muted);
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
+        }
+        .lang-btn.active { background: var(--blue); color: #fff; }
+        .content {
+            max-width: 720px; margin: 0 auto; padding: 60px 24px 80px;
+        }
+        .content h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+        .last-updated { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 40px; }
+        .content h2 { font-size: 1.15rem; font-weight: 600; margin-top: 32px; margin-bottom: 12px; }
+        .content p {
+            color: var(--text-muted); font-size: 0.95rem;
+            margin-bottom: 12px; line-height: 1.7;
+        }
+        .content ul {
+            color: var(--text-muted); font-size: 0.95rem;
+            line-height: 1.7; padding-left: 20px; margin-bottom: 12px;
+        }
+        .content ul li { margin-bottom: 4px; }
+        .content a { color: var(--blue); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        footer {
+            max-width: 960px; margin: 0 auto; padding: 40px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.88rem; color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--blue); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .content h1 { font-size: 1.6rem; }
+            .nav-links { display: none; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><line x1="16" y1="16" x2="20" y2="20"/></svg>
+            </div>
+            PeekDrive
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="./" data-en="Home" data-fr="Accueil">Home</a>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1 data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</h1>
+        <p class="last-updated" data-en="Last updated: May 15, 2026" data-fr="Dernière mise à jour : 15 mai 2026">Last updated: May 15, 2026</p>
+
+        <h2 data-en="What PeekDrive does" data-fr="Ce que fait PeekDrive">What PeekDrive does</h2>
+        <p data-en="PeekDrive is a Chrome extension that lets you search inside your Google Drive files and preview matching passages directly from the search results." data-fr="PeekDrive est une extension Chrome qui vous permet de rechercher dans le contenu de vos fichiers Google Drive et de visualiser les passages correspondants directement dans les résultats.">PeekDrive is a Chrome extension that lets you search inside your Google Drive files and preview matching passages directly from the search results.</p>
+
+        <h2 data-en="Data collection" data-fr="Collecte de données">Data collection</h2>
+        <p data-en="PeekDrive does not collect, store, transmit, or share any personal data. All processing happens locally in your browser. Your search queries, file contents, and results never leave your device." data-fr="PeekDrive ne collecte, ne stocke, ne transmet et ne partage aucune donnée personnelle. Tout le traitement se fait localement dans votre navigateur. Vos recherches, le contenu de vos fichiers et vos résultats ne quittent jamais votre appareil.">PeekDrive does not collect, store, transmit, or share any personal data. All processing happens locally in your browser. Your search queries, file contents, and results never leave your device.</p>
+
+        <div data-en="<p>Specifically, PeekDrive:</p><ul><li>Does not send any data to external servers</li><li>Does not use analytics, tracking, or telemetry</li><li>Does not use cookies</li><li>Does not store your file contents or search history</li><li>Does not share any data with third parties</li></ul>" data-fr="<p>Plus précisément, PeekDrive :</p><ul><li>N'envoie aucune donnée vers des serveurs externes</li><li>N'utilise aucun outil d'analyse, de suivi ou de télémétrie</li><li>N'utilise pas de cookies</li><li>Ne stocke ni le contenu de vos fichiers ni votre historique de recherche</li><li>Ne partage aucune donnée avec des tiers</li></ul>">
+            <p>Specifically, PeekDrive:</p>
+            <ul>
+                <li>Does not send any data to external servers</li>
+                <li>Does not use analytics, tracking, or telemetry</li>
+                <li>Does not use cookies</li>
+                <li>Does not store your file contents or search history</li>
+                <li>Does not share any data with third parties</li>
+            </ul>
+        </div>
+
+        <h2 data-en="Google API usage" data-fr="Utilisation des API Google">Google API usage</h2>
+        <p data-en="PeekDrive accesses your Google Drive files through Google's APIs solely to perform search and display matching passages. This access is limited to what is necessary for the extension to function." data-fr="PeekDrive accède à vos fichiers Google Drive via les API de Google uniquement pour effectuer la recherche et afficher les passages correspondants. Cet accès est limité à ce qui est nécessaire au fonctionnement de l'extension.">PeekDrive accesses your Google Drive files through Google's APIs solely to perform search and display matching passages. This access is limited to what is necessary for the extension to function.</p>
+        <p data-en="PeekDrive's use of information received from Google APIs adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements." data-fr="L'utilisation des informations reçues des API Google par PeekDrive est conforme à la politique de données utilisateur du Chrome Web Store, y compris les exigences d'utilisation limitée (Limited Use).">PeekDrive's use of information received from Google APIs adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
+
+        <h2 data-en="Data retention and deletion" data-fr="Conservation et suppression des données">Data retention and deletion</h2>
+        <p data-en="PeekDrive does not retain any user data. Since all processing happens locally and no data is stored beyond your active browser session, there is nothing to delete. Your Google Drive file contents are only accessed temporarily during a search and are not cached or saved." data-fr="PeekDrive ne conserve aucune donnée utilisateur. Comme tout le traitement se fait localement et qu'aucune donnée n'est stockée au-delà de votre session de navigation, il n'y a rien à supprimer. Le contenu de vos fichiers Google Drive n'est consulté que temporairement pendant une recherche et n'est ni mis en cache ni sauvegardé.">PeekDrive does not retain any user data. Since all processing happens locally and no data is stored beyond your active browser session, there is nothing to delete. Your Google Drive file contents are only accessed temporarily during a search and are not cached or saved.</p>
+
+        <h2 data-en="Data protection" data-fr="Protection des données">Data protection</h2>
+        <p data-en="Your data is protected by design: PeekDrive processes everything locally in your browser using encrypted HTTPS connections to Google's APIs. No data is transmitted to any third-party server." data-fr="Vos données sont protégées par conception : PeekDrive traite tout localement dans votre navigateur via des connexions HTTPS chiffrées vers les API de Google. Aucune donnée n'est transmise à un serveur tiers.">Your data is protected by design: PeekDrive processes everything locally in your browser using encrypted HTTPS connections to Google's APIs. No data is transmitted to any third-party server.</p>
+
+        <h2 data-en="Permissions" data-fr="Autorisations">Permissions</h2>
+        <p data-en="PeekDrive requests access to your Google Drive to read file contents for search purposes only. No other permissions are requested beyond what is strictly necessary for the extension to work." data-fr="PeekDrive demande l'accès à votre Google Drive uniquement pour lire le contenu des fichiers à des fins de recherche. Aucune autre autorisation n'est demandée au-delà de ce qui est strictement nécessaire.">PeekDrive requests access to your Google Drive to read file contents for search purposes only. No other permissions are requested beyond what is strictly necessary for the extension to work.</p>
+
+        <h2 data-en="Changes" data-fr="Modifications">Changes</h2>
+        <p data-en="If this policy changes, the updated version will be posted at this same URL with a new date." data-fr="En cas de modification de cette politique, la version mise à jour sera publiée à cette même URL avec une nouvelle date.">If this policy changes, the updated version will be posted at this same URL with a new date.</p>
+
+        <h2>Contact</h2>
+        <p data-en="Questions or concerns:" data-fr="Questions ou remarques :">Questions or concerns:</p>
+        <p><a href="mailto:peekdrive.contact@gmail.com">peekdrive.contact@gmail.com</a></p>
+    </div>
+
+    <footer>
+        <span>&copy; 2026 PeekDrive</span>
+        <span><a href="mailto:peekdrive.contact@gmail.com">peekdrive.contact@gmail.com</a></span>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
+                var val = el.getAttribute('data-' + lang);
+                if (el.tagName === 'A' && el.getAttribute('href') && !val.includes('<')) {
+                    el.textContent = val;
+                } else {
+                    el.innerHTML = val;
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            document.documentElement.lang = lang;
+            try { localStorage.setItem('peekdrive-lang', lang); } catch(e) {}
+        }
+        (function() {
+            var saved = null;
+            try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
+            if (saved) { setLang(saved); }
+            else {
+                var bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+                setLang(bl.startsWith('fr') ? 'fr' : 'en');
+            }
+        })();
+    </script>
+</body>
+</html>
